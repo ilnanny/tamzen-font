@@ -97,7 +97,7 @@ Using a package manager:
 
 Manually, on any Linux:
 
-* [Download a release]( https://github.com/sunaku/tamzen-font/releases )
+* [Download a release](https://github.com/sunaku/tamzen-font/releases)
   or clone this Git repository into `~/.fonts/tamzen-font` and then run:
 
       xset +fp ~/.fonts/tamzen-font/bdf
@@ -220,37 +220,45 @@ fonts when run inside a shell that is attached to [the URxvt terminal][4].
     alias TamzenForPowerline10x20r='font -misc-tamzenforpowerline-medium-r-normal--20-145-100-100-c-100-iso10646-1'
     alias TamzenForPowerline10x20b='font -misc-tamzenforpowerline-bold-r-normal--20-145-100-100-c-100-iso10646-1'
 
-Building
---------
+## Building
 
-You can build the Tamzen fonts for yourself by running these commands:
+### Dependencies
 
-    bundle exec rake                 # build things only when necessary
-    bundle exec rake clobber         # destroy everything that we built
-    bundle exec rake clobber default # rebuild everything from scratch
+Following are the dependencies under Arch Linux.
+Check the [original fork](https://github.com/sunaku/tamzen-font/#requirements) for Ubuntu.
 
-### Requirements
+1. Install these packages from official repositories:
+    ```shell
+    ruby git imagemagick mercurial xorg-bdftopcf python python-pip freetype2 fontforge
+    ```
 
-    sudo apt-get install ruby git imagemagick mercurial bdftopcf bdf2psf
+2. Install `bdf2psf` from AUR.
+
+3. Install these packages from `pip`:
+    ```shell
+    bdflib Pillow
+    ```
+
+4. Run the following commands:
+    ```shell
     gem install bundler
-    bundle install
+    bundle update --bundler
+    sudo bundle install
+    git branch --track origin/Tamsyn-1.6-derived
+    git fetch --all
+    git pull --all
+    ```
 
-Requirements for [bitmap-font-patcher][6]:
+### Building commands
 
-    sudo apt-get install python python-fontforge python-pip python-dev libfreetype6-dev
-    pip install --user bdflib
-    pip install --user Pillow
-
-Requirements for non-Linux font formats:
-
-    sudo apt-get install fontforge
+```shell
+bundle exec rake                 # build things only when necessary
+bundle exec rake clobber         # destroy everything that we built
+bundle exec rake clobber default # rebuild everything from scratch
+```
 
 License
 -------
-
-[Spare A Life]: https://sunaku.github.io/vegan-for-life.html
-> Like my work? :+1:  Please [spare a life] today as thanks!
-:cow::pig::chicken::fish::speak_no_evil::v::revolving_hearts:
 
 Copyright 2011 Suraj N. Kurapati <https://github.com/sunaku>
 
